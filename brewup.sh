@@ -12,7 +12,7 @@ brew upgrade &&
 echo "[+] cask upgrade"
 for CASK in $(brew ls --cask); do
   if [ $(brew cask info ${CASK} 2>/dev/null | head -3 | grep -v '^http' | sed -e "s/ (auto_updates)$//" -e "s/^.*\/\(.*\) (.*$/${CASK}: \1/" | sort -u | wc -l) != "1" ]; then
-    brew cask reinstall ${CASK}
+    brew reinstall --cask ${CASK}
     echo
   fi
 done
