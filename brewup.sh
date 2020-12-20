@@ -16,4 +16,4 @@ for CASK in $(brew ls --cask); do
   fi
 done
 # uncomment if you're always low on space
-# rm -r $(brew --cache)
+# rm -rf "$(brew --cache)"
