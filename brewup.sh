@@ -10,7 +10,7 @@ echo "[+] upgrade"
 brew upgrade &&
 echo "[+] cask upgrade"
 for CASK in $(brew ls --cask); do
-  if [ $(brew info --cask ${CASK} 2>/dev/null | sed -n "s/....//;s/ (auto_updates)$//;p;3n;s/^.*\/\(.*\) (.*$/${CASK}: \1/;p;q" | sort -u | wc -l) != "1" ]; then
+  if [ $(brew info --cask ${CASK} 2>/dev/null | sed -n "1{s/....//;s/ (auto_updates)$//;p;};4{s/^.*\/\(.*\) (.*$/${CASK}: \1/;p;}" | sort -u | wc -l) != "1" ]; then
     brew reinstall --cask ${CASK}
     echo
   fi
